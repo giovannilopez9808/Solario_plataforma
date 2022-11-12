@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends "layout.html" %} {% block content %}
+<div class="box-logo"></div>
+<div class="box-text">
+  <strong>
+    Solario del Centro Dermatológico Pascua.<br />El Solario está conformado por
+    5 Cabinas utilizadas para la exposición solar en el tratamiento de
+    Psoriasis. La radiación solar UVA que ingresa a las Cabinas varía en función
+    de la hora del día y época del año. Para estimar la proporción de la
+    radiación UVA que atraviesa las paredes del Solario, se determinó la
+    Transmitancia UVA midiendo (con un espectroradiómetro Avantes-3648) la
+    intensidad solar dentro y fuera de cada Cabina. De este modo se calculan los
+    TES (Tiempos de Exposición Solar) considerando las condiciones climáticas,
+    época del año, hora del día y la Cabina elegida.
+  </strong>
+</div>
+<form action="/cloud" method="POST">
+  <div class="form-row">
+    <div class="col-md-3 mb-1">
+      <input
+        type="hidden"
+        class="form-control"
+        id="hour"
+        name="hour"
+        value="{{results.hour}}"
+        readonly
+      />
+    </div>
+    <div class="col-md-3 mb-1">
+      <input
+        type="hidden"
+        class="form-control"
+        id="treatment"
+        name="treatment"
+        value="{{results.treatment}}"
+        readonly
+      />
+    </div>
+    <div class="col-md-2 mb-1">
+      <input
+        type="hidden"
+        class="form-control"
+        id="date"
+        name="date"
+        value="{{results.date}}"
+        readonly
+      />
+    </div>
+    <div class="col-md-2 mb-1">
+      <input
+        type="hidden"
+        class="form-control"
+        name="skin"
+        id="skin"
+        value="{{results.skin}}"
+        readonly
+      />
+    </div>
+  </div>
+  <div class="box-room">
+    <img src="{{url_for('static', filename='images/solario3.jpg')}}" />
+    <strong>Vista hacia el Este</strong>
+  </div>
+  <div class="box-room">
+    <img src="{{url_for('static', filename='images/solario2.jpg')}}" />
+    <strong>Vista hacia el Oeste</strong>
+  </div>
+  <br />
+  <div class="box-option">
+    <input type="radio" id="a" name="cabin" value="a" required />
+    <label for="a"><strong>Cabina a</strong></label>
+  </div>
+  <div class="box-option">
+    <input type="radio" id="b" name="cabin" value="b" />
+    <label for="b"><strong>Cabina b</strong></label>
+  </div>
+  <div class="box-option">
+    <input type="radio" id="c" name="cabin" value="c" />
+    <label for="c"><strong>Cabina c</strong></label>
+  </div>
+  <div class="box-option">
+    <input type="radio" id="d" name="cabin" value="d" />
+    <label for="d"><strong>Cabina d</strong></label>
+  </div>
+  <br />
+  <a class="btn btn-primary" href="{{ url_for('home') }}"
+    ><i class="fa fa-arrow-left"></i><strong> Regresar</strong></a
+  >
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-arrow-right"></i> <strong> Siguiente</strong>
+  </button>
+</form>
+{% endblock%}
